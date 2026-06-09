@@ -1,0 +1,25 @@
+name: flordeloto
+display_name: Flor de Loto
+version: 1.0.0
+author:
+  name: Flor de Loto
+  email: admin@flordeloto.local
+meta:
+  compatibility:
+    from: 8.0.0
+    to: ~
+assets:
+  use_parent_assets: false
+global_settings:
+  configuration:
+    PS_IMAGE_QUALITY: png_all
+  modules:
+    to_enable:
+      - ps_categorytree
+      - ps_contactinfo
+      - ps_customtext
+      - ps_featuredproducts
+      - ps_imageslider
+      - ps_mainmenu
+theme_settings:
+  default_layout: layout-full-width
