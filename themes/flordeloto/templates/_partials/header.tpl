@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<nav id="mobileMenu" class="mobile-menu" aria-label="Navegacion movil">
+<nav id="mobileMenu" class="mobile-menu" aria-label="Navegacion movil" hidden>
   <a href="{$urls.pages.index|escape:'html':'UTF-8'}">Inicio</a>
   <a href="{$link->getCategoryLink(2)|escape:'html':'UTF-8'}">Tienda</a>
   <a href="{$link->getCategoryLink(3)|escape:'html':'UTF-8'}">Ramos</a>
