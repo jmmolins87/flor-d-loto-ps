@@ -1,0 +1,17 @@
+.DS_Store
+.superpowers/
+*.zip
+*.tar.gz
+*.sql
+*.log
+.env
+.env.*
+config/settings.inc.php
+app/config/parameters.php
+var/cache/
+var/logs/
+cache/smarty/cache/
+cache/smarty/compile/
+admin*/backups/
+.worktrees/
+worktrees/
