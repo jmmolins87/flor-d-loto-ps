@@ -2,7 +2,7 @@
 <html lang="{$language.locale}">
 <head>
   {block name='head'}{include file='_partials/head.tpl'}{/block}
-  {block name='stylesheets'}{include file='_partials/stylesheets.tpl'}{/block}
+  {block name='stylesheets'}{include file='_partials/stylesheets.tpl' stylesheets=$stylesheets}{/block}
 </head>
 <body id="{$page.page_name}" class="{$page.body_classes|classnames}">
   {hook h='displayAfterBodyOpeningTag'}
@@ -20,7 +20,7 @@
 
   {include file='_partials/footer.tpl'}
 
-  {block name='javascript_bottom'}{include file='_partials/javascript.tpl'}{/block}
+  {block name='javascript_bottom'}{include file='_partials/javascript.tpl' javascript=$javascript.bottom}{/block}
   {hook h='displayBeforeBodyClosingTag'}
 </body>
 </html>
