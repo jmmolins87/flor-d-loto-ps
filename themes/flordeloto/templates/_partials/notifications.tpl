@@ -10,7 +10,7 @@
           {/foreach}
         {/capture}
         {if $smarty.capture.notification_items|trim !== ''}
-        <div class="notification notification-{$type|escape:'html':'UTF-8'}" role="alert">
+        <div class="alert alert-{$type|escape:'html':'UTF-8'} notification notification-{$type|escape:'html':'UTF-8'}" role="alert">
           <ul>
             {$smarty.capture.notification_items nofilter}
           </ul>
