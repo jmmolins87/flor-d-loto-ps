@@ -14,12 +14,12 @@
         <div class="products-grid">
           {foreach from=$listing.products item=product}
             <article class="product-card">
-              <a href="{$product.url|escape:'html':'UTF-8'}">
+              <a href="{$product.url|escape:'html':'UTF-8'}" aria-label="{$product.name|escape:'html':'UTF-8'}">
                 <div class="product-image">
                   {if isset($product.cover.bySize.home_default.url)}
                     <img
                       src="{$product.cover.bySize.home_default.url|escape:'html':'UTF-8'}"
-                      alt="{$product.name|escape:'html':'UTF-8'}"
+                      alt="{$product.cover.legend|default:$product.name|escape:'html':'UTF-8'}"
                       loading="lazy"
                     >
                   {/if}
