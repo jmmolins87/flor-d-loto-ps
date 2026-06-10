@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
+  menuToggle.setAttribute('aria-expanded', String(!mobileMenu.hidden));
+
   menuToggle.addEventListener('click', function () {
     var isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
 
