@@ -10,8 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
   menuToggle.setAttribute('aria-expanded', String(!mobileMenu.hidden));
 
   function closeMenu() {
+    var shouldRestoreFocus = mobileMenu.contains(document.activeElement);
+
     menuToggle.setAttribute('aria-expanded', 'false');
     mobileMenu.hidden = true;
+
+    if (shouldRestoreFocus) {
+      menuToggle.focus();
+    }
   }
 
   function syncMenuForViewport(event) {
