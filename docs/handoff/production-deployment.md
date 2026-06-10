@@ -19,9 +19,14 @@ PrestaShop cannot run in production until these values are created in vPanel and
 
 ## Upload Policy
 
-Upload the prepared PrestaShop files after local verification. Do not upload local cache folders, local logs, local database dumps, or development-only `.env` files.
+Upload only the PrestaShop runtime and application files that belong in the production web root. Do not upload repository-internal documentation, helper scripts, local cache folders, local logs, local database dumps, or development-only `.env` files.
 
-Do not start the actual FTP upload yet if the production MySQL values listed above are still missing. This handoff stops before any live upload until those values exist.
+Do not start the actual FTP upload yet. Upload is blocked until both of these are true:
+
+- the production MySQL values listed above have been created and provided
+- a completed, verified local PrestaShop install exists
+
+Local install verification is still pending, so this handoff stops before any live upload.
 
 ## Recommended FTP Exclusions
 
@@ -29,6 +34,8 @@ Do not upload these local-only paths:
 
 - `.git/`
 - `.superpowers/`
+- `docs/`
+- `scripts/`
 - `prestashop_8.2.1.zip`
 - `prestashop.zip`
 - `var/cache/*`
