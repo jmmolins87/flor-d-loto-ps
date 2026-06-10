@@ -16,40 +16,56 @@
       <div class="product-summary">
         <p class="eyebrow">{l s='Flor de Loto' d='Shop.Theme.Catalog'}</p>
         <h1>{$product.name|escape:'html':'UTF-8'}</h1>
-        <div class="product-detail-price">{$product.price|escape:'html':'UTF-8'}</div>
+
+        <div class="product-detail-price">
+          {block name='product_prices'}
+            {include file='catalog/_partials/product-prices.tpl'}
+          {/block}
+        </div>
 
         {if $product.description_short}
           <div class="product-description">{$product.description_short nofilter}</div>
         {/if}
 
-        <form action="{$urls.pages.cart|escape:'html':'UTF-8'}" method="post" id="add-to-cart-or-refresh">
-          <input type="hidden" name="token" value="{$static_token|escape:'html':'UTF-8'}">
-          <input type="hidden" name="id_product" value="{$product.id_product|default:$product.id|escape:'html':'UTF-8'}" id="product_page_product_id">
-          <input type="hidden" name="id_customization" value="{$product.id_customization|default:0|escape:'html':'UTF-8'}" id="product_customization_id" class="js-product-customization-id">
-          <input type="hidden" name="add" value="1">
+        {if $product.is_customizable && count($product.customizations.fields)}
+          {block name='product_customization'}
+            {include file='catalog/_partials/product-customization.tpl' customizations=$product.customizations}
+          {/block}
+        {/if}
 
-          <div class="product-buy-row">
-            <input
-              class="quantity-input"
-              type="number"
-              name="qty"
-              id="quantity_wanted"
-              value="{$product.quantity_wanted|default:$product.minimal_quantity|escape:'html':'UTF-8'}"
-              min="{$product.minimal_quantity|escape:'html':'UTF-8'}"
-              inputmode="numeric"
-              pattern="[0-9]*"
-              aria-label="{l s='Cantidad' d='Shop.Theme.Actions'}"
-            >
-            <button
-              class="btn btn-primary"
-              type="submit"
-              name="add"
-              {if !$product.add_to_cart_url || $product.quantity <= 0}disabled{/if}
-            >
-              {l s='Anadir al carrito' d='Shop.Theme.Actions'}
-            </button>
-          </div>
-        </form>
+        <div class="product-actions js-product-actions">
+          {block name='product_buy'}
+            <form action="{$urls.pages.cart|escape:'html':'UTF-8'}" method="post" id="add-to-cart-or-refresh">
+              <input type="hidden" name="token" value="{$static_token|escape:'html':'UTF-8'}">
+              <input type="hidden" name="id_product" value="{$product.id|escape:'html':'UTF-8'}" id="product_page_product_id">
+              <input type="hidden" name="id_customization" value="{$product.id_customization|escape:'html':'UTF-8'}" id="product_customization_id" class="js-product-customization-id">
+
+              {block name='product_variants'}
+                {include file='catalog/_partials/product-variants.tpl'}
+              {/block}
+
+              {block name='product_discounts'}
+                {include file='catalog/_partials/product-discounts.tpl'}
+              {/block}
+
+              <div class="product-buy-row">
+                {block name='product_add_to_cart'}
+                  {include file='catalog/_partials/product-add-to-cart.tpl'}
+                {/block}
+              </div>
+
+              {block name='product_additional_info'}
+                {include file='catalog/_partials/product-additional-info.tpl'}
+              {/block}
+
+              {block name='product_refresh'}{/block}
+            </form>
+          {/block}
+        </div>
+
+        {block name='hook_display_reassurance'}
+          {hook h='displayReassurance'}
+        {/block}
       </div>
     </div>
 
