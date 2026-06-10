@@ -39,6 +39,7 @@
               <input type="hidden" name="token" value="{$static_token|escape:'html':'UTF-8'}">
               <input type="hidden" name="id_product" value="{$product.id|escape:'html':'UTF-8'}" id="product_page_product_id">
               <input type="hidden" name="id_customization" value="{$product.id_customization|escape:'html':'UTF-8'}" id="product_customization_id" class="js-product-customization-id">
+              <input type="hidden" name="add" value="1">
 
               {block name='product_variants'}
                 {include file='catalog/_partials/product-variants.tpl'}
