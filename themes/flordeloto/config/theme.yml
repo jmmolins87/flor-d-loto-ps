@@ -45,8 +45,11 @@ global_settings:
       scope: [ categories ]
   modules:
     to_enable:
+      - ps_categorytree
+      - ps_contactinfo
       - ps_customtext
       - ps_featuredproducts
       - ps_imageslider
+      - ps_mainmenu
 theme_settings:
   default_layout: layout-full-width

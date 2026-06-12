@@ -16,8 +16,8 @@
 - Verification method: source review of `themes/flordeloto/templates/index.tpl`, local hook/module query, and HTTP fetch of `http://localhost:8080/`.
 - Actual local outcome:
   - Verified homepage category links target existing local categories.
-  - Verified rendered homepage includes `ps_imageslider`, `ps_customtext`, and `ps_featuredproducts` content.
-  - `ps_mainmenu`, `ps_categorytree`, and `ps_contactinfo` were not required by the current custom theme shell or rendered homepage, so they were removed from `themes/flordeloto/config/theme.yml`.
+  - Verified rendered homepage includes `ps_imageslider`, `ps_customtext`, and `ps_featuredproducts` content. `ps_banner` also renders a sale banner.
+  - `ps_mainmenu`, `ps_categorytree`, and `ps_contactinfo` are not rendered in the current custom theme shell or homepage, but they remain in `themes/flordeloto/config/theme.yml` module list.
 
 ## Starter Product Coverage
 
