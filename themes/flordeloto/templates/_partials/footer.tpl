@@ -15,11 +15,18 @@
       <a href="{$link->getCategoryLink(8)|escape:'html':'UTF-8'}">Funerales</a>
     </nav>
 
+    <nav class="site-footer__meta" aria-label="Ayuda y confianza">
+      <h2>Ayuda</h2>
+      <a href="{$urls.pages.contact|escape:'html':'UTF-8'}">Atencion al cliente</a>
+      <a href="{$urls.pages.contact|escape:'html':'UTF-8'}">Entregas y encargos</a>
+      <a href="{$urls.pages.contact|escape:'html':'UTF-8'}">Aviso legal y privacidad</a>
+    </nav>
+
     <address class="site-footer__contact">
       <h2>Contacto</h2>
       <span>Segovia, Espana</span>
-      <a href="mailto:info@flordeloto.es">info@flordeloto.es</a>
-      <a href="https://wa.me/34000000000" rel="noopener noreferrer">WhatsApp</a>
+      <a href="{$urls.pages.contact|escape:'html':'UTF-8'}">Formulario de contacto</a>
+      <a href="{$urls.pages.contact|escape:'html':'UTF-8'}">Solicitar telefono o WhatsApp</a>
     </address>
   </div>
 

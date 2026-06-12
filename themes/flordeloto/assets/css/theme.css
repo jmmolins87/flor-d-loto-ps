@@ -31,6 +31,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -106,6 +118,7 @@ h3 {
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 22px;
   min-width: 0;
   font-size: 0.8125rem;
@@ -131,6 +144,12 @@ h3 {
 .site-header__action,
 .site-actions a {
   position: relative;
+}
+
+.site-nav a[aria-current='page'],
+.mobile-menu a[aria-current='page'],
+.site-header__action[aria-current='page'] {
+  color: var(--ink);
 }
 
 .site-nav a::after,
@@ -162,9 +181,15 @@ h3 {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 14px;
   font-size: 0.8125rem;
   font-weight: 700;
+}
+
+.site-header__action--cart {
+  white-space: nowrap;
 }
 
 .cart-count,
@@ -673,8 +698,8 @@ h3 {
 .site-footer__inner,
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 50px;
+  grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr));
+  gap: 40px;
 }
 
 .site-footer__logo,
@@ -698,10 +723,21 @@ h3 {
 }
 
 .site-footer__links,
+.site-footer__meta,
 .site-footer__contact {
   display: grid;
   gap: 12px;
   align-content: start;
+}
+
+.site-footer h2 {
+  font-size: 1.35rem;
+}
+
+.site-footer__links a,
+.site-footer__meta a,
+.site-footer__contact a {
+  width: fit-content;
 }
 
 .site-footer__contact {
@@ -746,6 +782,7 @@ h3 {
 @media (max-width: 1050px) {
   .site-header__inner {
     flex-wrap: wrap;
+    justify-content: space-between;
     padding: 16px 0;
   }
 
@@ -756,6 +793,7 @@ h3 {
   .site-header__actions,
   .site-actions {
     margin-left: auto;
+    row-gap: 10px;
   }
 
   .menu-toggle {
@@ -767,6 +805,11 @@ h3 {
   .site-footer__inner,
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+
+  .site-footer__inner,
+  .footer-grid {
+    gap: 28px;
   }
 
   .category-cards,
@@ -807,6 +850,30 @@ h3 {
     display: none;
   }
 
+  .site-header__inner {
+    gap: 16px;
+  }
+
+  .site-header__logo img,
+  .site-logo img {
+    height: 46px;
+  }
+
+  .site-header__actions,
+  .site-actions {
+    gap: 10px;
+  }
+
+  .menu-toggle {
+    padding-inline: 11px;
+  }
+
+  .mobile-menu,
+  #mobileMenu {
+    margin-bottom: 16px;
+    border-radius: 20px;
+  }
+
   .hero,
   .home-hero {
     padding: 44px 0 60px;
@@ -829,5 +896,10 @@ h3 {
 
   .product-summary {
     padding: 28px;
+  }
+
+  .site-footer__inner,
+  .footer-grid {
+    gap: 24px;
   }
 }
