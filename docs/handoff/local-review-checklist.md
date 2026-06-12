@@ -15,11 +15,14 @@
 5. Open `Design > Pages` and verify CMS pages are still editable.
 
 ## Outcome Log
-- Homepage: `http://localhost:8080/` returned `200 OK`; header, hero, featured categories, and product cards are present in the rendered HTML. Source includes duplicated `theme.css` and `theme.js` asset tags.
-- Mobile menu: `.menu-toggle` and `#mobileMenu` markup are present on storefront pages, and `themes/flordeloto/assets/js/theme.js` toggles `aria-expanded` and `hidden`; interactive behavior was not visually exercised in a browser.
-- Category listing: `http://localhost:8080/3-ramos` returned `200 OK` and rendered two product cards with image, title, and price.
-- Product page: `http://localhost:8080/funerales/7-corona-lisboa.html` returned `200 OK` and includes product image, `120,00 EUR` price, short description, quantity input, and add-to-cart button.
-- Cart: `http://localhost:8080/cart?action=show` returned a storefront `404`; posting the product form to `http://localhost:8080/carrito` created a cart page with one item, so the cart route exists under the localized slug.
+
+### Post-shell retest after `2c1d045d`
+- Cache clear: `./scripts/clear-prestashop-cache.sh` completed successfully for both `prod` and `dev`; output included PHP 8.4/8.5 deprecation noise from the legacy PrestaShop stack, but both cache clear steps ended with `[OK]`.
+- Template lint: `php -l themes/flordeloto/templates/_partials/header.tpl` and `php -l themes/flordeloto/templates/_partials/footer.tpl` both returned `No syntax errors detected`.
+- Homepage retest: `http://localhost:8080/` returned `200 OK` after the cache clear. Rendered HTML still includes the shell elements added in Task 2: `.site-header`, the cart link to `http://localhost:8080/carrito`, `.menu-toggle` with `aria-controls="mobileMenu" aria-expanded="false"`, and `<nav id="mobileMenu" ... hidden>`.
+- Mobile menu evidence: Post-shell markup and JS wiring are present after the retest. `themes/flordeloto/assets/js/theme.js` still selects `.menu-toggle` and `#mobileMenu` and toggles `aria-expanded` plus the `hidden` state. Interactive open/close behavior was not visually exercised because no browser automation was available in this pass.
+- Cart access retest: `http://localhost:8080/carrito` returned `200 OK` after the cache clear. The rendered HTML includes `aria-current="page"` on the header cart link, `.cart-grid`, and `.cart-overview js-cart` with refresh URL `//localhost:8080/carrito?ajax=1&action=refresh`, which confirms the localized cart route remained reachable after the shell change.
+- Other front-office manual checks: Category, product, and add-to-cart visual/manual flows were not re-exercised after `2c1d045d` in this documentation-only pass.
 - Back Office products: Not visually verified; no browser automation or confirmed local admin URL/credentials were available during this audit pass.
 - Back Office categories: Not visually verified; no browser automation or confirmed local admin URL/credentials were available during this audit pass.
 - Back Office CMS: Not visually verified; no browser automation or confirmed local admin URL/credentials were available during this audit pass.
