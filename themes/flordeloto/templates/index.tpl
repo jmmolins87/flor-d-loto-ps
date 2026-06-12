@@ -3,7 +3,7 @@
 {block name='content'}
   <section class="home-hero" style="background-image: url('{$urls.theme_assets|escape:'html':'UTF-8'}img/products/bouquet/ramo-armonia_1.jpg');">
     <div class="container home-hero__content">
-      <p class="home-hero__eyebrow">Floristeria en Segovia</p>
+      <p class="home-hero__eyebrow">Tienda de flores</p>
       <h1>Flores frescas para cada ocasion</h1>
       <p>Ramos, plantas y arreglos florales preparados con mimo para regalar, decorar y acompanar momentos importantes.</p>
       <div class="home-hero__actions">
@@ -59,7 +59,7 @@
         <article class="service-card">
           <img src="{$urls.theme_assets|escape:'html':'UTF-8'}img/icons-services/service-delivery.svg" alt="" loading="lazy" aria-hidden="true">
           <h3>Entrega local</h3>
-          <p>Reparto en Segovia y alrededores para que tus flores lleguen frescas y puntuales.</p>
+          <p>Opciones de entrega para que tus flores lleguen frescas y puntuales.</p>
         </article>
         <article class="service-card">
           <img src="{$urls.theme_assets|escape:'html':'UTF-8'}img/icons-services/advice.svg" alt="" loading="lazy" aria-hidden="true">
