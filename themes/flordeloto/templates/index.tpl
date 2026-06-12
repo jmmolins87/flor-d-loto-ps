@@ -15,7 +15,11 @@
 
   <section class="featured-categories" aria-labelledby="featured-categories-title">
     <div class="container">
-      <h2 id="featured-categories-title">Elige tu flor ideal</h2>
+      <div class="section-heading">
+        <p class="eyebrow">Colecciones destacadas</p>
+        <h2 id="featured-categories-title">Elige tu flor ideal</h2>
+        <p class="featured-categories__intro">Descubre arreglos pensados para celebrar, acompanar y decorar con un estilo calido y natural.</p>
+      </div>
       <div class="featured-categories__grid">
         <a class="category-card" href="{$link->getCategoryLink(3)|escape:'html':'UTF-8'}" style="background-image: url('{$urls.theme_assets|escape:'html':'UTF-8'}img/products/bouquet/ramo-primavera_1.jpg');">
           <span>Ramos</span>
@@ -41,7 +45,11 @@
 
   <section class="home-services" aria-labelledby="home-services-title">
     <div class="container">
-      <h2 id="home-services-title">Servicios florales</h2>
+      <div class="section-heading">
+        <p class="eyebrow">Te acompanamos</p>
+        <h2 id="home-services-title">Servicios florales</h2>
+        <p class="home-services__intro">Una atencion cercana para ayudarte a acertar con flores, plantas y detalles preparados con sensibilidad.</p>
+      </div>
       <div class="home-services__grid">
         <article class="service-card">
           <img src="{$urls.theme_assets|escape:'html':'UTF-8'}img/icons-services/charm-plant.svg" alt="" loading="lazy" aria-hidden="true">

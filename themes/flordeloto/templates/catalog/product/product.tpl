@@ -1,20 +1,25 @@
 {extends file='layouts/layout-full-width.tpl'}
 
+{assign var=product_category value=$category}
+{assign var=product_category_id value=$category.id|default:0}
+{assign var=product_category_name value=$category.name|default:''}
+{assign var=category value=['id' => $product_category_id, 'name' => $product_category_name]}
+
 {block name='content'}
-  <section class="section product-page">
-    <div class="container product-layout">
+  <section id="main" class="section product-page">
+    <meta content="{$product.url|escape:'html':'UTF-8'}">
+
+    <div class="container product-layout js-product-container">
       <div class="product-gallery">
-        {if $product.cover && isset($product.cover.bySize.large_default.url)}
-          <img
-            class="product-main-image"
-            src="{$product.cover.bySize.large_default.url|escape:'html':'UTF-8'}"
-            alt="{$product.cover.legend|default:$product.name|escape:'html':'UTF-8'}"
-          >
-        {/if}
+        {include file='catalog/_partials/product-flags.tpl'}
+
+        {block name='product_cover_thumbnails'}
+          {include file='catalog/_partials/product-cover-thumbnails.tpl'}
+        {/block}
       </div>
 
       <div class="product-summary">
-        <p class="eyebrow">{l s='Flor de Loto' d='Shop.Theme.Catalog'}</p>
+        <p class="eyebrow">{if $product_category_name}{$product_category_name|escape:'html':'UTF-8'}{else}{l s='Flor de Loto' d='Shop.Theme.Catalog'}{/if}</p>
         <h1>{$product.name|escape:'html':'UTF-8'}</h1>
 
         <div class="product-detail-price">
@@ -45,6 +50,19 @@
                 {include file='catalog/_partials/product-variants.tpl'}
               {/block}
 
+              {block name='product_pack'}
+                {if $packItems}
+                  <section class="product-pack">
+                    <h2>{l s='Este pack contiene' d='Shop.Theme.Catalog'}</h2>
+                    {foreach from=$packItems item='product_pack'}
+                      {block name='product_miniature'}
+                        {include file='catalog/_partials/miniatures/pack-product.tpl' product=$product_pack showPackProductsPrice=$product.show_price}
+                      {/block}
+                    {/foreach}
+                  </section>
+                {/if}
+              {/block}
+
               {block name='product_discounts'}
                 {include file='catalog/_partials/product-discounts.tpl'}
               {/block}
@@ -70,11 +88,69 @@
       </div>
     </div>
 
-    {if $product.description}
-      <div class="container product-long-description">
-        <h2>{l s='Descripcion' d='Shop.Theme.Catalog'}</h2>
-        {$product.description nofilter}
+    <div class="container product-page__details">
+      {if $product.description}
+        <section class="product-long-description product-page__panel">
+          <h2>{l s='Descripcion' d='Shop.Theme.Catalog'}</h2>
+          {$product.description nofilter}
+        </section>
+      {/if}
+
+      <section class="product-page__panel product-page__panel--details">
+        <h2>{l s='Detalles del producto' d='Shop.Theme.Catalog'}</h2>
+        {block name='product_details'}
+          {include file='catalog/_partials/product-details.tpl'}
+        {/block}
+      </section>
+
+      {if $product.attachments}
+        <section class="product-page__panel product-attachments">
+          <h2>{l s='Archivos adjuntos' d='Shop.Theme.Catalog'}</h2>
+          {foreach from=$product.attachments item=attachment}
+            <article class="product-attachments__item">
+              <h3><a href="{url entity='attachment' params=['id_attachment' => $attachment.id_attachment]}">{$attachment.name|escape:'html':'UTF-8'}</a></h3>
+              {if $attachment.description}
+                <p>{$attachment.description|escape:'html':'UTF-8'}</p>
+              {/if}
+            </article>
+          {/foreach}
+        </section>
+      {/if}
+
+      {foreach from=$product.extraContent item=extra key=extraKey}
+        <section class="product-page__panel product-extra-content {$extra.attr.class|default:''|escape:'html':'UTF-8'}" id="extra-{$extraKey|escape:'html':'UTF-8'}">
+          <h2>{$extra.title|escape:'html':'UTF-8'}</h2>
+          {$extra.content nofilter}
+        </section>
+      {/foreach}
+    </div>
+
+    {block name='product_accessories'}
+      {if $accessories}
+        <section class="container product-accessories">
+          <div class="section-heading">
+            <p class="eyebrow">Tambien te puede gustar</p>
+            <h2>{l s='Completa tu eleccion' d='Shop.Theme.Catalog'}</h2>
+          </div>
+          <div class="products row">
+            {foreach from=$accessories item='product_accessory' key='position'}
+              {block name='product_miniature'}
+                {include file='catalog/_partials/miniatures/product.tpl' product=$product_accessory position=$position productClasses='col-xs-12 col-sm-6 col-lg-4 col-xl-3'}
+              {/block}
+            {/foreach}
+          </div>
+        </section>
+      {/if}
+    {/block}
+
+    {block name='product_footer'}
+      <div class="container">
+        {hook h='displayFooterProduct' product=$product category=$product_category}
       </div>
-    {/if}
+    {/block}
+
+    {block name='product_images_modal'}
+      {include file='catalog/_partials/product-images-modal.tpl'}
+    {/block}
   </section>
 {/block}
