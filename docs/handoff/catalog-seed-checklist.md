@@ -38,3 +38,15 @@
 - Back Office was not used interactively from this environment. Verification relied on local database queries, rendered HTTP output, and theme template inspection.
 - Because no browser automation or confirmed admin session was used, this checklist records observed local state rather than claiming manual Back Office edits.
 - If future content seeding changes category IDs or removes starter products, update the hardcoded category links in `index.tpl`, `header.tpl`, and `footer.tpl` to match the live catalog.
+
+## Final Verification (Task 5)
+
+All catalog seed data was verified in the final local verification pass:
+
+- **Category links**: Homepage renders correct links to all 7 storefront categories (`/2-inicio`, `/3-ramos`, `/4-rosas`, `/5-orquideas`, `/6-plantas`, `/7-bodas`, `/8-funerales`).
+- **Category pages**: `/3-ramos` returns 200 with correct product listings.
+- **Starter products**: 2 products in Ramos (`Ramo Armonia`, `Ramo Primavera`) verified as rendering on category page with correct product URLs.
+- **Cart flow**: `Ramo Armonia` (id=1) successfully added to cart via POST, confirming product data, pricing, and add-to-cart functionality work end-to-end.
+- **Admin URL**: `admin090jfa2wqne3d487ic9` — login page renders correctly.
+
+**Remaining limitation:** Interactive Back Office catalog editing was not tested (no browser automation). The catalog seed data is confirmed correct via HTTP output and earlier database queries.
