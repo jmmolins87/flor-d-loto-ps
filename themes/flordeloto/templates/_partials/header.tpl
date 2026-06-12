@@ -1,4 +1,11 @@
-{assign var=current_category_id value=$category.id|default:0}
+{assign var=current_category_id value=0}
+{if isset($category)}
+  {if is_array($category) && isset($category.id)}
+    {assign var=current_category_id value=$category.id}
+  {elseif is_object($category) && isset($category->id)}
+    {assign var=current_category_id value=$category->id}
+  {/if}
+{/if}
 
 <div class="site-header__inner">
   <a class="site-header__logo" href="{$urls.pages.index|escape:'html':'UTF-8'}" aria-label="{$shop.name|escape:'html':'UTF-8'}">

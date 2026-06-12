@@ -895,23 +895,23 @@ h3 {
   font-size: 1.5rem;
 }
 
-.product-buy-row {
+.product-summary .product-quantity {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.product-buy-row .qty,
-.product-buy-row .input-group,
-.product-buy-row .add {
+.product-summary .product-quantity .qty,
+.product-summary .product-quantity .input-group,
+.product-summary .product-quantity .add {
   display: flex;
   align-items: center;
 }
 
-.product-buy-row input[type='number'],
-.product-buy-row .input-group-btn .btn,
-.product-buy-row .bootstrap-touchspin input,
+.product-summary .product-quantity input[type='number'],
+.product-summary .product-quantity .input-group-btn .btn,
+.product-summary .product-quantity .bootstrap-touchspin input,
 .quantity-input {
   min-height: 48px;
   border: 1px solid var(--border);
@@ -919,16 +919,16 @@ h3 {
   background: var(--cream);
 }
 
-.product-buy-row input[type='number'],
-.product-buy-row .bootstrap-touchspin input,
+.product-summary .product-quantity input[type='number'],
+.product-summary .product-quantity .bootstrap-touchspin input,
 .quantity-input {
   width: 92px;
   padding: 0 12px;
 }
 
-.product-buy-row .btn,
-.product-buy-row button,
-.product-buy-row .add-to-cart {
+.product-summary .product-quantity .btn,
+.product-summary .product-quantity button,
+.product-summary .product-quantity .add-to-cart {
   min-height: 48px;
   padding: 0 24px;
   border: 1px solid transparent;
