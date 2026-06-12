@@ -26,3 +26,13 @@
 - Back Office products: Not visually verified; no browser automation or confirmed local admin URL/credentials were available during this audit pass.
 - Back Office categories: Not visually verified; no browser automation or confirmed local admin URL/credentials were available during this audit pass.
 - Back Office CMS: Not visually verified; no browser automation or confirmed local admin URL/credentials were available during this audit pass.
+
+### Post-review retest for Task 2 code-quality fixes
+- Root cause: PrestaShop already auto-registers `/assets/css/theme.css` and `/assets/js/theme.js` in `FrontController::setMedia()`. `themes/flordeloto/config/theme.yml` also declared those same files, so the active child theme emitted duplicate `theme.css` and `theme.js` tags.
+- Source fix: Removed the duplicate asset declarations from `themes/flordeloto/config/theme.yml`, added a one-time initialization guard in `themes/flordeloto/assets/js/theme.js`, and removed the cart link `aria-label` so the visible label plus hidden count text can form the accessible name.
+- Runtime refresh: `php bin/console prestashop:theme:enable flordeloto --no-interaction` was required locally after the source change so PrestaShop regenerated `config/themes/flordeloto/shop1.json` without the stale `theme-style` and `theme-script` entries.
+- Cache clear: `./scripts/clear-prestashop-cache.sh` again completed successfully for both `prod` and `dev`; output still included legacy PHP 8.4/8.5 deprecation notices, but both environments ended with `[OK]`.
+- Rendered homepage check: `php -r '...'` against `http://localhost:8080/` reported `css=1 js=1`, confirming the storefront now renders a single `themes/flordeloto/assets/css/theme.css` tag and a single `themes/flordeloto/assets/js/theme.js` tag.
+- Rendered cart/header check: `php -r '...'` against `http://localhost:8080/` confirmed the header cart link no longer renders an `aria-label`. `php -r '...'` against `http://localhost:8080/carrito` confirmed `aria-current="page"` is still present on the cart link and `.cart-grid` still renders.
+- Local menu behavior check: No browser automation was installed (`playwright not found`), so a Node harness executed `themes/flordeloto/assets/js/theme.js` against a stub DOM. It passed open, Escape-to-close, outside-click close, and duplicate-init checks with output `theme.js menu harness: pass`.
+- Limitation: I could not perform a real browser/mobile viewport interaction test in this environment because no browser automation binary was available.

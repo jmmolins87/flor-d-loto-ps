@@ -15,19 +15,6 @@ meta:
       description: No side columns, ideal for distraction-free pages.
 assets:
   use_parent_assets: true
-  css:
-    all:
-      - id: theme-style
-        path: assets/css/theme.css
-        media: all
-        priority: 50
-  js:
-    all:
-      - id: theme-script
-        path: assets/js/theme.js
-        position: bottom
-        priority: 50
-        attribute: defer
 global_settings:
   configuration:
     PS_IMAGE_QUALITY: png_all

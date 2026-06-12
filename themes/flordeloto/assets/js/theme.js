@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+  if (document.documentElement.dataset.flordelotoThemeInitialized === 'true') {
+    return;
+  }
+
+  document.documentElement.dataset.flordelotoThemeInitialized = 'true';
+
   var menuToggle = document.querySelector('.menu-toggle');
   var mobileMenu = document.getElementById('mobileMenu');
   var desktopBreakpoint = window.matchMedia('(min-width: 1051px)');

@@ -20,11 +20,11 @@
   <div class="site-header__actions">
     <a class="site-header__action" href="{$urls.pages.search|escape:'html':'UTF-8'}">Buscar</a>
     <a class="site-header__action" href="{$urls.pages.my_account|escape:'html':'UTF-8'}">Cuenta</a>
-    <a class="site-header__action site-header__action--cart" href="{$urls.pages.cart|escape:'html':'UTF-8'}" aria-label="Carrito"{if $page.page_name == 'cart'} aria-current="page"{/if}>
+    <a class="site-header__action site-header__action--cart" href="{$urls.pages.cart|escape:'html':'UTF-8'}"{if $page.page_name == 'cart'} aria-current="page"{/if}>
       Carrito
       {if isset($cart.products_count) && $cart.products_count > 0}
-        <span class="cart-count">{$cart.products_count|escape:'html':'UTF-8'}</span>
-        <span class="visually-hidden">{$cart.products_count|escape:'html':'UTF-8'} producto{if $cart.products_count != 1}s{/if} en el carrito</span>
+        <span class="cart-count" aria-hidden="true">{$cart.products_count|escape:'html':'UTF-8'}</span>
+        <span class="visually-hidden">, {$cart.products_count|escape:'html':'UTF-8'} producto{if $cart.products_count != 1}s{/if} en el carrito</span>
       {/if}
     </a>
     <button class="menu-toggle" type="button" aria-controls="mobileMenu" aria-expanded="false">
