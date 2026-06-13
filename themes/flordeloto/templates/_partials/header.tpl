@@ -25,8 +25,6 @@
   </nav>
 
   <div class="site-header__actions">
-    <a class="site-header__action" href="{$urls.pages.search|escape:'html':'UTF-8'}">Buscar</a>
-    <a class="site-header__action" href="{$urls.pages.my_account|escape:'html':'UTF-8'}">Cuenta</a>
     <a class="site-header__action site-header__action--cart" href="{$urls.pages.cart|escape:'html':'UTF-8'}"{if $page.page_name == 'cart'} aria-current="page"{/if}>
       Carrito
       {if isset($cart.products_count) && $cart.products_count > 0}
